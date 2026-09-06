@@ -1,0 +1,1002 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --bg: #1f1f1f;
+    --bg2: #1f1f1f;
+    --card: #1f1f1f;
+    --white: #f7fbff;
+    --muted: #a9bdd0;
+    --line: #ffffff1a;
+    --blue: #D3AA85;
+    --blue2: #cf6b13;
+    --max: 1180px;
+}
+
+html {
+    scroll-behavior: smooth
+}
+
+body {
+    font-family: Inter, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--white);
+    line-height: 1.65;
+    overflow-x: hidden;
+}
+
+body:before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image: linear-gradient(rgba(255, 255, 255, .025) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, .025) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: linear-gradient(to bottom, black, transparent 75%);
+    z-index: -1;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.container {
+    width: min(var(--max), calc(100% - 40px));
+    margin: auto;
+}
+
+.section {
+    padding: 105px 0;
+    border-top: 1px solid var(--line);
+}
+
+.eyebrow {
+    color: var(--blue);
+    font-size: 12px;
+    letter-spacing: 2.2px;
+    font-weight: 800;
+    margin-bottom: 13px;
+}
+
+h1,
+h2,
+h3 {
+    line-height: 1.15;
+}
+
+h2 {
+    font-size: clamp(32px, 4vw, 48px);
+}
+
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid var(--line);
+}
+
+.nav {
+    height: 76px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 19px;
+}
+
+.brand b,
+.hero h1 span,
+.hero h2 span {
+    color: var(--blue);
+}
+
+.brand-mark {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(135deg, var(--blue), #3968d6);
+    font-weight: 800;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    font-size: 13px;
+    color: #c6d6e4;
+}
+
+.nav-links a {
+    position: relative;
+    padding: 8px 0;
+}
+
+.nav-links a:not(.nav-resume):after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background: var(--blue);
+    transition: .25s;
+}
+
+.nav-links a:hover:after,
+.nav-links a.active:after {
+    width: 100%;
+}
+
+.nav-resume {
+    padding: 10px 17px !important;
+    border: 1px solid var(--blue);
+    border-radius: 30px;
+    color: white !important;
+}
+
+.menu-toggle {
+    display: none;
+    background: none;
+    border: 0;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 25px;
+    height: 2px;
+    background: white;
+    margin: 5px;
+}
+
+.hero {
+    padding-top: 145px;
+    min-height: 720px;
+    display: grid;
+    align-items: center;
+    border-top: 0;
+    overflow: hidden;
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1.05fr .95fr;
+    align-items: center;
+    gap: 40px;
+}
+
+.hero h1 {
+    font-size: clamp(46px, 6vw, 76px);
+    margin-bottom: 15px;
+    letter-spacing: -3px;
+}
+
+.hero h2 {
+    font-size: clamp(21px, 2.5vw, 30px);
+    font-weight: 500;
+    margin-bottom: 25px;
+    color: #d9e8f5;
+}
+
+.hero-text {
+    max-width: 650px;
+    color: var(--muted);
+    font-size: 16px;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 14px;
+    margin: 32px 0 24px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    border-radius: 30px;
+    padding: 14px 24px;
+    font-size: 13px;
+    font-weight: 700;
+    transition: .25s;
+    border: 1px solid transparent;
+    color: white;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--blue), var(--blue2));
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--blue);
+}
+
+.btn-outline {
+    border-color: rgba(10, 167, 255, .7);
+    color: white;
+}
+
+.btn-outline:hover {
+    background: rgba(10, 167, 255, .1);
+    transform: translateY(-3px);
+}
+
+.social-row {
+    display: flex;
+    gap: 10px;
+}
+
+.social-row a {
+    width: 34px;
+    height: 34px;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    color: #c9d9e7;
+    font-weight: 700;
+}
+
+.social-row a:hover {
+    color: var(--blue);
+    border-color: var(--blue);
+}
+
+.hero-visual {
+    position: relative;
+    min-height: 500px;
+    display: grid;
+    place-items: center;
+}
+
+.hero-glow {
+    position: absolute;
+    width: 430px;
+    height: 430px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0, 145, 255, .33), transparent 67%);
+    filter: blur(10px);
+}
+
+.portrait-wrap {
+    position: relative;
+    width: min(420px, 80vw);
+    height: 480px;
+    border-radius: 220px 220px 40px 40px;
+    overflow: hidden;
+    border: 2px solid var(--blue);
+    box-shadow: 0 0 0 12px rgba(10, 167, 255, .06), 0 35px 80px rgba(0, 0, 0, .4);
+}
+
+.portrait-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.experience-badge {
+    position: absolute;
+    right: 0;
+    top: 55px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.experience-badge strong {
+    font-size: 52px;
+    color: var(--blue);
+    line-height: 1;
+}
+
+.experience-badge span {
+    font-size: 13px;
+    color: var(--muted);
+}
+
+.floating-code {
+    position: absolute;
+    left: 0;
+    bottom: 70px;
+    color: var(--blue);
+    font-size: 34px;
+    font-weight: 800;
+    opacity: .8;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1.2fr .8fr;
+    gap: 70px;
+    align-items: start;
+}
+
+.about-copy h2 {
+    margin-bottom: 24px;
+}
+
+.about-copy>p {
+    color: var(--muted);
+    max-width: 700px;
+    margin-bottom: 18px;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin-top: 35px;
+}
+
+.stats div {
+    border-left: 2px solid var(--blue);
+    padding-left: 14px;
+}
+
+.stats strong {
+    display: block;
+    color: white;
+    font-size: 20px;
+}
+
+.stats span {
+    font-size: 11px;
+    color: var(--muted);
+}
+
+.info-card,
+.contact-form {
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 28px;
+    box-shadow: 0 20px 70px rgba(0, 0, 0, .15);
+}
+
+.card-label {
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    color: var(--blue);
+    font-weight: 800;
+    margin-bottom: 24px;
+}
+
+.info-item {
+    display: flex;
+    gap: 14px;
+    margin: 20px 0;
+}
+
+.info-item>span,
+.contact-list span {
+    color: var(--blue);
+    font-size: 19px;
+}
+
+.info-item small,
+.contact-list small {
+    display: block;
+    color: var(--blue);
+    font-size: 11px;
+    margin-bottom: 2px;
+}
+
+.info-item strong,
+.info-item a,
+.contact-list strong,
+.contact-list a,
+.contact-list .address {
+    font-size: 13px;
+    color: var(--blue);
+}
+
+.section-heading {
+    margin-bottom: 45px;
+}
+
+.section-heading h2 {
+    max-width: 750px;
+}
+
+.section-heading-row {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.section-heading-row>div>p:last-child {
+    color: var(--muted);
+    margin-top: 12px;
+    max-width: 650px;
+}
+
+.text-link {
+    color: var(--blue);
+    font-weight: 700;
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+.skill-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 14px;
+}
+
+.skill-card {
+    padding: 21px 16px;
+    border: 1px solid var(--line);
+    border-radius: 15px;
+    color: var(--bg);
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    transition: .25s;
+}
+
+.skill-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--blue);
+}
+
+.skill-icon {
+    flex: 0 0 40px;
+    height: 40px;
+    border-radius: 11px;
+    display: grid;
+    place-items: center;
+    background: rgba(151, 151, 151, 0.1);
+    color: var(--blue);
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.skill-card h3 {
+    font-size: 13px;
+    color: white;
+}
+
+.skill-card p {
+    font-size: 10px;
+    color: var(--blue);
+    margin-top: 4px;
+}
+
+.timeline {
+    position: relative;
+    margin-left: 10px;
+}
+
+.timeline:before {
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: rgba(10, 167, 255, .35);
+}
+
+.timeline-item {
+    display: grid;
+    grid-template-columns: 190px 1fr;
+    gap: 45px;
+    position: relative;
+    padding: 0 0 48px 38px;
+}
+
+.timeline-dot {
+    position: absolute;
+    left: 0;
+    top: 5px;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: var(--blue);
+    box-shadow: 0 0 0 5px rgba(10, 167, 255, .1);
+}
+
+.timeline-date {
+    color: var(--blue);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.company {
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.timeline-content h3 {
+    font-size: 14px;
+    color: #b9cbd9;
+    margin: 4px 0 14px;
+}
+
+.timeline-content ul {
+    color: var(--muted);
+    font-size: 12px;
+    padding-left: 17px;
+}
+
+.timeline-content li {
+    margin-bottom: 5px;
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 118px;
+}
+
+.project-card {
+    border: 1px solid var(--line);
+    background: var(--bg);
+    border-radius: 17px;
+    overflow: hidden;
+    transition: .3s;
+}
+
+.project-card:hover {
+    transform: translateY(-7px);
+    border-color: var(--blue);
+}
+
+.project-image {
+    height: 190px;
+    background-size: cover;
+    background-position: center;
+}
+
+.furniture {
+    background: url("img/hesperide.webp") left/cover;
+}
+
+.shoes {
+    background: url("img/jonak.webp") left/cover;
+}
+
+.decor {
+    background: url("img/atmosphera.webp") left/cover;
+}
+
+.ecommerce {
+    background: linear-gradient(135deg, #0a4061, #071a2b);
+    position: relative;
+}
+
+.ecommerce:after {
+    content: "eCommerce";
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    font-size: 28px;
+    font-weight: 800;
+    color: rgba(255, 255, 255, .85);
+}
+
+.project-body {
+    padding: 20px;
+}
+
+.project-body>span {
+    font-size: 10px;
+    color: var(--blue);
+    font-weight: 700;
+}
+
+.project-body h3 {
+    font-size: 20px;
+    margin: 7px 0;
+}
+
+.project-body p {
+    font-size: 12px;
+    color: var(--muted);
+    min-height: 42px;
+}
+
+.project-body a {
+    display: inline-block;
+    margin-top: 15px;
+    color: var(--blue);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.education {
+    background: var(--);
+}
+
+.education-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px
+}
+
+.education-card {
+    display: flex;
+    gap: 17px;
+    padding: 25px;
+    border: 1px solid var(--line);
+    border-radius: 15px;
+}
+
+.education-card>span {
+    color: var(--blue);
+    font-weight: 800;
+}
+
+.education-card p {
+    font-size: 11px;
+    color: var(--blue);
+    font-weight: 700;
+}
+
+.education-card h3 {
+    font-size: 14px;
+    margin: 5px 0 7px;
+}
+
+.education-card small {
+    font-size: 11px;
+    color: var(--muted);
+}
+
+.resume-cta {
+    border-top: 0;
+}
+
+.resume-box {
+    border: 1px solid var(--blue);
+    border-radius: 20px;
+    padding: 45px 50px;
+    background: #0f0f0f;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 35px;
+}
+
+.resume-box h2 {
+    font-size: 34px;
+}
+
+.resume-box p:last-child {
+    color: var(--muted);
+    max-width: 650px;
+    margin-top: 12px;
+}
+
+.contact {
+    background: black;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: .8fr 1.2fr;
+    gap: 70px
+}
+
+.contact-copy h2 {
+    font-size: 55px;
+}
+
+.contact-copy>p {
+    color: var(--muted);
+    max-width: 500px;
+    margin: 18px 0 30px;
+}
+
+.contact-list>div {
+    display: flex;
+    gap: 15px;
+    margin: 22px 0;
+}
+
+.contact-list a {
+    color: var(--blue);
+}
+
+.contact-form h3 {
+    font-size: 25px;
+}
+
+.contact-form>p {
+    color: var(--muted);
+    font-size: 12px;
+    margin: 7px 0 25px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.contact-form label {
+    display: block;
+    font-size: 11px;
+    color: white;
+    margin-bottom: 16px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    display: block;
+    width: 100%;
+    margin-top: 7px;
+    background: black;
+    border: 1px solid var(--line);
+    color: white;
+    border-radius: 9px;
+    padding: 13px;
+    font: inherit;
+    font-size: 12px;
+    outline: none;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: var(--blue);
+}
+
+.contact-form textarea {
+    min-height: 130px;
+    resize: vertical;
+}
+
+.form-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.form-footer small {
+    color: white;
+}
+
+.form-note {
+    color: var(--blue) !important;
+    min-height: 18px;
+}
+
+.footer {
+    padding: 26px 0;
+    border-top: 1px solid var(--line);
+    background: var(--bg);
+}
+
+.footer-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    font-size: 11px;
+    color: white;
+}
+
+.footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    color: white;
+}
+
+.footer-brand .brand-mark {
+    width: 28px;
+    height: 28px;
+    font-size: 12px;
+}
+
+.footer-links {
+    display: flex;
+    gap: 18px;
+}
+
+.footer-links a:hover {
+    color: var(--blue);
+}
+
+.back-top {
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--blue);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: transparent;
+    color: var(--blue);
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: .2s;
+}
+
+.back-top.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.back-top:hover {
+    background: white;
+}
+
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 2px;
+    width: 0;
+    background: var(--blue);
+    z-index: 200;
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity .7s ease, transform .7s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: none;
+}
+
+@media(max-width:1000px) {
+    .skill-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .project-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .education-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .about-grid,
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-visual {
+        min-height: 560px;
+    }
+
+    .experience-badge {
+        right: 8%;
+    }
+}
+
+@media(max-width:760px) {
+    .container {
+        width: min(100% - 28px, var(--max));
+    }
+
+    .section {
+        padding: 75px 0;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 76px;
+        left: 0;
+        right: 0;
+        padding: 20px;
+        background: var(--bg);
+        border-bottom: 1px solid var(--line);
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .nav-links.open {
+        display: flex;
+    }
+
+    .hero {
+        padding-top: 115px;
+    }
+
+    .hero h1 {
+        letter-spacing: -2px;
+    }
+
+    .hero-visual {
+        min-height: 440px;
+    }
+
+    .portrait-wrap {
+        height: 410px;
+    }
+
+    .experience-badge {
+        top: 30px;
+        right: 2%;
+    }
+
+    .floating-code {
+        left: 2%;
+        bottom: 25px;
+    }
+
+    .stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .skill-grid,
+    .project-grid,
+    .education-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .timeline-item {
+        grid-template-columns: 1fr;
+        gap: 7px;
+        padding-bottom: 40px;
+    }
+
+    .section-heading-row,
+    .resume-box {
+        display: block
+    }
+
+    .section-heading-row .text-link {
+        display: inline-block;
+        margin-top: 20px;
+    }
+
+    .resume-box {
+        padding: 30px;
+    }
+
+    .resume-box .btn {
+        margin-top: 25px;
+    }
+
+    .contact-copy h2 {
+        font-size: 44px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

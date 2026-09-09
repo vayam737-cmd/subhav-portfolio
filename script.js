@@ -67,3 +67,9 @@ document.getElementById("contactForm").addEventListener("submit", (e) => {
 });
 
 document.getElementById("year").textContent = new Date().getFullYear();
+
+const startYear = 2021;
+const currentYear = new Date().getFullYear();
+const years = currentYear - startYear;
+
+document.getElementById("experienceyears").textContent = years + "+";

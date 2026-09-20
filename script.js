@@ -1,13 +1,19 @@
 const menuToggle = document.getElementById("menuToggle");
 const navLinks = document.getElementById("navLinks");
-menuToggle.addEventListener("click", () => {
-  const open = navLinks.classList.toggle("open");
-  menuToggle.setAttribute("aria-expanded", open);
-});
 
-document.querySelectorAll(".nav-links a").forEach((link) => {
-  link.addEventListener("click", () => navLinks.classList.remove("open"));
-});
+if (menuToggle && navLinks) {
+    menuToggle.addEventListener("click", () => {
+        const open = navLinks.classList.toggle("open");
+        menuToggle.setAttribute("aria-expanded", String(open));
+    });
+
+    navLinks.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+            navLinks.classList.remove("open");
+            menuToggle.setAttribute("aria-expanded", "false");
+        });
+    });
+}
 
 const sections = [...document.querySelectorAll("main section[id]")];
 const navItems = [...document.querySelectorAll(".nav-links a")];
@@ -15,61 +21,109 @@ const progress = document.getElementById("scrollProgress");
 const backTop = document.querySelector(".back-top");
 
 function updateScroll() {
-  const scrollTop = window.scrollY;
-  const height = document.documentElement.scrollHeight - window.innerHeight;
-  progress.style.width = `${height > 0 ? (scrollTop / height) * 100 : 0}%`;
-  backTop.classList.toggle("show", scrollTop > 500);
+    const scrollTop = window.scrollY;
+    const height = document.documentElement.scrollHeight - window.innerHeight;
 
-  let current = "home";
-  sections.forEach((section) => {
-    if (scrollTop >= section.offsetTop - 180) current = section.id;
-  });
-  navItems.forEach((item) =>
-    item.classList.toggle(
-      "active",
-      item.getAttribute("href") === "#" + current,
-    ),
-  );
+    if (progress) {
+        progress.style.width = `${height > 0 ? (scrollTop / height) * 100 : 0}%`;
+    }
+
+    if (backTop) {
+        backTop.classList.toggle("show", scrollTop > 500);
+    }
+
+    if (sections.length && navItems.length) {
+        let current = "home";
+
+        sections.forEach((section) => {
+            if (scrollTop >= section.offsetTop - 180) {
+                current = section.id;
+            }
+        });
+
+        navItems.forEach((item) => {
+            item.classList.toggle(
+                "active",
+                item.getAttribute("href") === `#${current}`,
+            );
+        });
+    }
 }
+
 window.addEventListener("scroll", updateScroll, { passive: true });
 updateScroll();
 
-const observer = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) entry.target.classList.add("visible");
-    });
-  },
-  { threshold: 0.12 },
-);
-document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+const revealElements = document.querySelectorAll(".reveal");
+
+if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                    observer.unobserve(entry.target);
+                }
+            });
+        },
+        { threshold: 0.12 },
+    );
+
+    revealElements.forEach((element) => observer.observe(element));
+} else {
+    revealElements.forEach((element) => element.classList.add("visible"));
+}
 
 const message = document.getElementById("message");
 const charCount = document.getElementById("charCount");
-message.addEventListener(
-  "input",
-  () => (charCount.textContent = message.value.length),
-);
 
-document.getElementById("contactForm").addEventListener("submit", (e) => {
-  e.preventDefault();
-  const form = e.currentTarget;
-  const data = new FormData(form);
-  const note = document.getElementById("formNote");
-  const subject = encodeURIComponent(
-    data.get("subject") || "Portfolio enquiry",
-  );
-  const body = encodeURIComponent(
-    `Name: ${data.get("name")}\nEmail: ${data.get("email")}\n\n${data.get("message")}`,
-  );
-  window.location.href = `mailto:vayam1607@gmail.com?subject=${subject}&body=${body}`;
-  note.textContent = "Opening your email application…";
-});
+if (message && charCount) {
+    message.addEventListener("input", () => {
+        charCount.textContent = message.value.length;
+    });
+}
 
-document.getElementById("year").textContent = new Date().getFullYear();
+const contactForm = document.getElementById("contactForm");
 
-const startYear = 2021;
-const currentYear = new Date().getFullYear();
-const years = currentYear - startYear;
+if (contactForm) {
+    contactForm.addEventListener("submit", (event) => {
+        event.preventDefault();
 
-document.getElementById("experienceyears").textContent = years + "+";
+        const data = new FormData(contactForm);
+        const note = document.getElementById("formNote");
+        const subject = encodeURIComponent(
+            data.get("subject") || "Portfolio enquiry",
+        );
+        const body = encodeURIComponent(
+            `Name: ${data.get("name")}\nEmail: ${data.get("email")}\n\n${data.get("message")}`,
+        );
+
+        if (note) {
+            note.textContent = "Opening your email application…";
+        }
+
+        window.location.href = `mailto:vayam1607@gmail.com?subject=${subject}&body=${body}`;
+    });
+
+    const loaderButton = contactForm.querySelector(".loader");
+
+    if (loaderButton) {
+        contactForm.addEventListener("submit", () => {
+            loaderButton.classList.add("loading-active");
+            loaderButton.disabled = true;
+        });
+    }
+}
+
+const year = document.getElementById("year");
+
+if (year) {
+    year.textContent = new Date().getFullYear();
+}
+
+const experienceYears = document.getElementById("experienceyears");
+
+if (experienceYears) {
+    const startYear = 2021;
+    const currentYear = new Date().getFullYear();
+    experienceYears.textContent = `${currentYear - startYear}+`;
+}

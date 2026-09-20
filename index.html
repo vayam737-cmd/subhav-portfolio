@@ -10,6 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
   <div class="scroll-progress" id="scrollProgress"></div>
@@ -54,7 +55,7 @@
           </div>
           <div class="social-row">
             <a href="https://www.facebook.com/profile.php?id=100084612090425" target="_blank" rel="noopener">f</a>
-            <a href="https://www.instagram.com/vayam_seechurn/" target="_blank" rel="noopener">◎</a>
+            <a href="https://www.instagram.com/vayam_seechurn/" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a>
             <a href="mailto:vayam1607@gmail.com">✉</a>
           </div>
         </div>
@@ -79,7 +80,7 @@
           <p class="eyebrow">ABOUT ME</p>
           <h2>Building modern digital experiences.</h2>
           <p>
-            Experienced professional skilled in WordPress development, web design,
+            Experienced professional skilled in Web development, web design,
             front-end development, eCommerce, and React Native. Passionate about
             creating visually appealing and user-friendly digital solutions.
           </p>
@@ -238,6 +239,7 @@
             </div>
           </article>
         </div>
+        <a class="btn btn-outline" href="projects.html">View all projects →</a>
       </div>
     </section>
 
@@ -263,7 +265,7 @@
           <h2>Want to know more about my experience?</h2>
           <p>Download my CV for a detailed overview of my skills, experience, education and professional background.</p>
         </div>
-        <a class="btn btn-primary" href="https://yashdb.com/subhavportfolio/wp-content/uploads/2024/11/resume_Subhav_Seechurn-1.pdf" target="_blank" rel="noopener">Download Resume ↓</a>
+        <a href="img/resume_Subhav_Seechurn_2026.pdf" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Download Resume ↓</a>
       </div>
     </section>
 
@@ -291,7 +293,10 @@
           <label>Message<textarea name="message" id="message" maxlength="180" placeholder="Your message..." required></textarea></label>
           <div class="form-footer">
             <small><span id="charCount">0</span> / 180</small>
-            <button class="btn btn-primary" type="submit" target="_blank" rel="noopener noreferrer">Send Message →</button>
+            <button class="btn btn-primary loader" type="submit">
+                <span class="loader-text">Send Message →</span>
+                <span class="loading">Sending...</span>
+            </button>
           </div>
           <p class="form-note" id="formNote"></p>
         </form>
@@ -304,9 +309,9 @@
       <div class="footer-brand"><img src="img/logo.webp" alt="Subhav Seechurn"></div>
       <p>© <span id="year"></span> Subhav Seechurn. All rights reserved.</p>
       <div class="footer-links">
-        <a href="https://www.facebook.com/profile.php?id=100084612090425" target="_blank" rel="noopener">Facebook</a>
-        <a href="https://www.instagram.com/vayam_seechurn/" target="_blank" rel="noopener">Instagram</a>
-        <a href="mailto:vayam1607@gmail.com">Email</a>
+        <a href="https://www.facebook.com/profile.php?id=100084612090425" target="_blank" rel="noopener">f</a>
+        <a href="https://www.instagram.com/vayam_seechurn/" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a>
+        <a href="mailto:vayam1607@gmail.com">✉</a>
       </div>
     </div>
   </footer>
